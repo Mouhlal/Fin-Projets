@@ -31,22 +31,9 @@ class ProduitsController extends Controller
      */
     public function store(Request $request)
     {
-        /* $request->validate([
-            'nom' => 'required',
-            'image' => 'required|image',
-            'description' => 'required',
-            'prix' => 'required',
-            'quantite' => 'required|int',
-            'categories_id' => 'required',
-        ]);
-       $request->file('image')->store('produits','public');
-        Produits::create($request->all());
-        return response()->json([
-            'message' => "Add with success",
-        ]); */
         $form = $request->all();
         $form['image'] = $request->file('image')->store('produit','public');
-        return Produits::create( $form ) ;
+        return Produits::create( $form );
     }
 
     /**
