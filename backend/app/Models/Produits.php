@@ -10,7 +10,7 @@ class Produits extends Model
 {
     use HasFactory , SoftDeletes;
 
-    protected $guarded=[];
+    protected $fillable=['name','image','description','prix','quantite','categories_id'];
 
     public function Categories(){
         return $this->belongsTo(Categorie::class);

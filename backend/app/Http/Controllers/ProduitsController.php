@@ -39,7 +39,7 @@ class ProduitsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produits $produits)
+    public function show(Produits $produits )
     {
         //
     }
@@ -59,11 +59,12 @@ class ProduitsController extends Controller
     {
         $formup = $request->all();
         if($request->hasFile('image')){
-            $formup['image'] = $request->file('image')->store('books','public');
+            $formup['image'] = $request->file('image')->store('produit','public');
         }
-        $produits->fill($formup)->save();
-        return $produits;
+        $produits->update($formup);
+        return dd($request) ;
     }
+
 
     /**
      * Remove the specified resource from storage.
