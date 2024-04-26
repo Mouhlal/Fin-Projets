@@ -39,9 +39,12 @@ class ProduitsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produits $produits )
+    public function show($produits )    
     {
-        //
+        $produit = Produits::find($produits);
+        return response()->json([
+            'produits' => $produit
+        ]);
     }
 
     /**
@@ -55,26 +58,39 @@ class ProduitsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produits $produits)
+    public function update(Request $request, $produits)
     {
-        $formup = $request->all();
-        if($request->hasFile('image')){
-            $formup['image'] = $request->file('image')->store('produit','public');
-        }
-        $produits->update($formup);
-        return dd($request) ;
+        //khali tal ghadad...
+    
+        $produit = Produits::find($produits);
+        $formup = $request->validate(['name' => 'string']);
+        
+        $produit->update($formup);
+        return response()->json([
+            'produits' => $produit
+        ]);
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produits $produits)
+    public function destroy($produits)
     {
-        $produits->delete();
+        $produit = Produits::find($produits);
+
+        if(!$produit) {
+            return response()->json([
+                'error' => 'Produit not found'
+            ], 404);
+        }
+
+        $produit->delete();
+
         return response()->json([
-            'message' => 'Suppression with succees',
-            'id' => $produits->id
+            'message' => 'Suppression successful',
+            'id' => $produit->id
         ]);
     }
+
 }
