@@ -58,18 +58,25 @@ class ProduitsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $produits)
+    public function update(Request $request, Produits $produit)
     {
-        //khali tal ghadad...
-    
-        $produit = Produits::find($produits);
-        $formup = $request->validate(['name' => 'string']);
-        
-        $produit->update($formup);
-        return response()->json([
-            'produits' => $produit
+        $attributes = $request->validate([
+            'name' => "string",
+            'description' => "string",
+            'quantite' => "integer",
+            'prix' => "numeric",
+            'image' => "image",
+            'categories_id' => "exists:categories,id"
         ]);
+
+        $produit->update($attributes);
+
+        return response()->json([
+            'produit' => $produit
+        ]);
+        
     }
+
 
 
     /**
@@ -81,7 +88,7 @@ class ProduitsController extends Controller
 
         if(!$produit) {
             return response()->json([
-                'error' => 'Produit not found'
+                'error' => 'Produit not found :('
             ], 404);
         }
 
