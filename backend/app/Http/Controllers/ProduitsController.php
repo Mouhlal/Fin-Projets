@@ -31,17 +31,12 @@ class ProduitsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produits $produits )
+    public function show($produits )
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Produits $produits)
-    {
-        //
+        $produit = Produits::find($produits);
+        return response()->json([
+            'produits' => $produit
+        ]);
     }
 
     /**
@@ -49,12 +44,21 @@ class ProduitsController extends Controller
      */
     public function update(Request $request, Produits $produit)
     {
-        $formup = $request->all();
-        if($request->hasFile('image')){
-            $formup['image'] = $request->file('image')->store('produit','public');
-        }
-        $produits->update($formup);
-        return dd($request) ;
+        $attributes = $request->validate([
+            'name' => "string",
+            'description' => "string",
+            'quantite' => "integer",
+            'prix' => "numeric",
+            'image' => "image",
+            'categories_id' => "exists:categories,id"
+        ]);
+
+        $produit->update($attributes);
+
+        return response()->json([
+            'produit' => $produit
+        ]);
+
     }
 
 
