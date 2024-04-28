@@ -12,7 +12,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        return Categorie::all();
     }
 
     /**
@@ -36,7 +36,7 @@ class CategorieController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        //
+       //
     }
 
     /**

@@ -36,7 +36,7 @@ class ClientsController extends Controller
      */
     public function show(Clients $clients)
     {
-        //
+        
     }
 
     /**

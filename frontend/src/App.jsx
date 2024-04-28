@@ -1,11 +1,23 @@
 import React from 'react'
-import { Nav } from './Composants/Nav'
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
+import Layout from './Composants/Layout'
+import Contact from './Pages/Contact'
+import Docs from './Pages/Docs'
+import Produits from './back/Produits'
+import Employées from './back/Employées'
+import Collections from './back/Collections'
 export default function App() {
   return (
    <BrowserRouter>
       <Routes>
-        <Route  path="/" element={<Nav />} />
+        <Route  path="/" element={<Layout />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/docs' element={<Docs />} />
+
+        <Route path='/produits' element={<Produits />} />
+        <Route path='/employees' element={<Employées />} />
+        <Route path='/collections' element={ <Collections /> } />
+        
       </Routes>
    </BrowserRouter>
   )

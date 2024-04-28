@@ -25,7 +25,7 @@ import {
   RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/solid";
- 
+
 // profile menu component
 const profileMenuItems = [
   {
@@ -49,12 +49,12 @@ const profileMenuItems = [
     icon: PowerIcon,
   },
 ];
- 
+
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
- 
+
   const closeMenu = () => setIsMenuOpen(false);
- 
+
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -110,31 +110,34 @@ function ProfileMenu() {
     </Menu>
   );
 }
- 
+
 // nav list menu
 const navListMenuItems = [
   {
     title: "Colletions",
+    href:'/collections',
     description:
       "Learn how to use @material-tailwind/html, packed with rich components and widgets.",
   },
   {
-    title: "@material-tailwind/react",
+    title: "Employées",
+    href: '/employees',
     description:
       "Learn how to use @material-tailwind/react, packed with rich components for React.",
   },
   {
-    title: "Material Tailwind PRO",
+    title: "Stocks",
+    href : '/produits',
     description:
       "A complete set of UI Elements for building faster websites in less time.",
   },
 ];
- 
+
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
- 
-  const renderItems = navListMenuItems.map(({ title, description }) => (
-    <a href="#" key={title}>
+
+  const renderItems = navListMenuItems.map(({ title, description , href }) => (
+    <a href={href} key={title}>
       <MenuItem>
         <Typography variant="h6" color="black" className="mb-1">
           {title}
@@ -145,12 +148,22 @@ function NavListMenu() {
       </MenuItem>
     </a>
   ));
- 
+
   return (
     <React.Fragment>
-      <Menu className="text-black" allowHover open={isMenuOpen} handler={setIsMenuOpen}>
+      <Menu
+        className="text-black"
+        allowHover
+        open={isMenuOpen}
+        handler={setIsMenuOpen}
+      >
         <MenuHandler className="text-black">
-          <Typography as="a" href="#" variant="small" className="font-normal text-black">
+          <Typography
+            as="a"
+            href="#"
+            variant="small"
+            className="font-normal text-black"
+          >
             <MenuItem className="hidden items-center gap-2 font-medium text-black lg:flex lg:rounded-full">
               <Square3Stack3DIcon className="h-[18px] w-[18px] text-black" />{" "}
               Pages{" "}
@@ -178,8 +191,7 @@ function NavListMenu() {
         </MenuList>
       </Menu>
       <MenuItem className="flex items-center gap-2 font-medium text-blue-gray-900 lg:hidden">
-        <Square3Stack3DIcon className="h-[18px] w-[18px] text-black" />{" "}
-        Pages{" "}
+        <Square3Stack3DIcon className="h-[18px] w-[18px] text-black" /> Pages{" "}
       </MenuItem>
       <ul className="ml-6 flex w-full flex-col gap-1 text-black lg:hidden">
         {renderItems}
@@ -187,32 +199,35 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
- 
+
 // nav list component
 const navListItems = [
   {
     label: "Account",
+    href:'/acc',
     icon: UserCircleIcon,
   },
   {
-    label: "Blocks",
+    label: "Contact ",
+    href: '/contact',
     icon: CubeTransparentIcon,
   },
   {
     label: "Docs",
+    href:"/docs",
     icon: CodeBracketSquareIcon,
   },
 ];
- 
+
 function NavList() {
   return (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 text-black lg:flex-row lg:items-center">
       <NavListMenu />
-      {navListItems.map(({ label, icon }, key) => (
+      {navListItems.map(({ label, icon , href}, key) => (
         <Typography
           key={label}
           as="a"
-          href="#"
+          href={href}
           variant="small"
           color="gray"
           className="font-medium text-black"
@@ -226,28 +241,28 @@ function NavList() {
     </ul>
   );
 }
- 
+
 export function Nav() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
- 
+
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setIsNavOpen(false),
+      () => window.innerWidth >= 960 && setIsNavOpen(false)
     );
   }, []);
- 
+
   return (
     <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6">
       <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
-          href="#"
+          href="/"
           className="mr-4 ml-2 cursor-pointer py-1.5 text-black font-medium"
         >
-         SchoolGear Express
+          SchoolGear Express
         </Typography>
         <div className="hidden lg:block">
           <NavList />
@@ -261,10 +276,17 @@ export function Nav() {
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
- 
-        <Button size="sm" variant="text">
-          <span className="relative bottom-1">Log In</span>
-        </Button>
+
+
+        <div className="relative left-96">
+          <Button size="sm" variant="text">
+            <span className="relative bottom-1">Log In</span>
+          </Button>
+          <Button size="sm" variant="text">
+            <span className="relative bottom-1">Register</span>
+          </Button>
+        </div>
+
         <ProfileMenu />
       </div>
       <MobileNav open={isNavOpen} className="overflow-scroll">
