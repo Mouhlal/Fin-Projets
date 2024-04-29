@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import StocksTable from "../Composants/StocksTable";
 
+export default function Employees() {
+  const [produits, setProduits] = useState([]);
+  const url = "http://127.0.0.1:8000/api";
 
-export default function Produits() {
-  const [products, setProducts] = useState([]);
-  const apiUrl = "http://127.0.0.1:8000/api/produits";
-
-  const fetchData = async () => {
+  const getApi = async () => {
     try {
-      const response = await axios.get(apiUrl);
-      setProducts(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error("Erreur lors de la récupération des données : ", error);
+      const resp = await axios.get(`${url}/produits`, {
+        withCredentials: true,
+        withXSRFToken: true,
+      });
+      const { produits } = resp.data;
+      setProduits(produits);
+      console.log("Produits list :", produits);
+    } catch (err) {
+      console.error(err);
     }
   };
-
   useEffect(() => {
-    fetchData();
+    getApi();
   }, []);
 
   return (
     <div>
-      <h1>Liste des produits</h1>
-      <ul></ul>
+      <StocksTable produits={produits} />
     </div>
   );
 }
