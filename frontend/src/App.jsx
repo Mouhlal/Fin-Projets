@@ -4,8 +4,8 @@ import Layout from './Composants/Layout'
 import Contact from './Pages/Contact'
 import Docs from './Pages/Docs'
 import Produits from './back/Produits'
-import Employées from './back/Employées'
 import Collections from './back/Collections'
+import Employees from './back/Employees'
 export default function App() {
   return (
    <BrowserRouter>
@@ -15,7 +15,7 @@ export default function App() {
         <Route path='/docs' element={<Docs />} />
 
         <Route path='/produits' element={<Produits />} />
-        <Route path='/employees' element={<Employées />} />
+        <Route path='/employees' element={<Employees />} />
         <Route path='/collections' element={ <Collections /> } />
         
       </Routes>

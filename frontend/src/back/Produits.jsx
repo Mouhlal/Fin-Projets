@@ -1,33 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 
 export default function Produits() {
-    const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
+  const apiUrl = "http://127.0.0.1:8000/api/produits";
 
-    const url = "http://127.0.0.1:8000/api/produits/";
-
-    const getApi = async () => {
-        try {
-            const resp = await axios.get(url);
-            setData(resp.data);
-            console.log(resp.data);
-        } catch (err) {
-            console.log(err);
-        }
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(apiUrl);
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des données : ", error);
     }
+  };
 
-    useEffect(() => {
-        getApi();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    return (
-        <div>
-            <h1>Liste des produits</h1>
-            <ul>
-                {data.map((product) => (
-                    <li key={product.id}>{product.name} - {product.price}</li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Liste des produits</h1>
+      <ul></ul>
+    </div>
+  );
 }
