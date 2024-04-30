@@ -15,7 +15,10 @@ export default function App() {
         <Route path='/docs' element={<Docs />} />
 
         <Route path='/produits' element={<Produits />} />
+        
+
         <Route path='/employees' element={<Employees />} />
+
         <Route path='/collections' element={ <Collections /> } />
         
       </Routes>
