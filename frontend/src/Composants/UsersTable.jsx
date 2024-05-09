@@ -259,4 +259,8 @@ const UsersTable = ({ users, refreshApi }) => {
   );
 };
 
+<<<<<<< HEAD
 export default UsersTable;
+=======
+export default UsersTable;
+>>>>>>> 328dc54b835b35035b3befd92ad28944adf146e1
