@@ -71,23 +71,17 @@ class UserController extends Controller
             'message' => "L'utilisateur a bien été modifié",
             'user' => $id
         ]);
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
-        if ($user == null){
-            return response()->json(['error'=>"Cet utilisateur n'existe pas"], 404);
-        }
 
         $user->delete();
         return response()->json([
             'message' => 'User  deleted',
-            'userId' => $id
         ]);
     }
 }

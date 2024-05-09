@@ -79,8 +79,6 @@ class ProduitsController extends Controller
 
         return response()->json([
             'message' => 'Suppression successful',
-            'id' => $produit->id
         ]);
     }
-
 }

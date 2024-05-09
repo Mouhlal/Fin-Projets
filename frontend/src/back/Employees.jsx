@@ -23,9 +23,13 @@ export default function Employees() {
     getApi();
   }, []);
 
+  const refreshApi = () => {
+    getApi();
+  };
+
   return (
     <div>
-      <UsersTable users={users} />
+      <UsersTable users={users} refreshApi={refreshApi} />
     </div>
   );
 }
