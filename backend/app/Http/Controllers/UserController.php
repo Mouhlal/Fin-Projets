@@ -31,7 +31,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => "string|required",
+            "image" => "image",
+            "cin" =>  "required|unique:users",
+            "Date_Début_travail" => 'date|required',
+            "salaries" => "numeric|required",
+            "email" => "email|required|unique:users",
+            "password" => "string|min:4|required"
+        ]);
+
+        User::create($attributes);
+        return response()->json(['success' => 
+        "user ajouter avec success :D"]);
     }
 
     /**
@@ -56,6 +68,25 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        $belly = $request->validate([
+            'name' => 'string',
+            'image' => 'image|nullable',
+            'cin' => 'string',
+            'Date_Début_travail' => 'date',
+            'salaries' => 'numeric',
+            'email' => 'email',
+        ]);
+
+        $id = User::find($id);
+        $id->update($belly);
+
+        return response()->json([
+            'message' => "L'utilisateur a bien été modifié",
+            'user' => $id
+        ]);
+
+
     }
 
     /**
