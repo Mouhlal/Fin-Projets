@@ -19,6 +19,14 @@ class ProduitsController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -37,6 +45,14 @@ class ProduitsController extends Controller
         return response()->json([
             'produits' => $produit
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Produits $produits)
+    {
+        //
     }
 
     /**
@@ -61,7 +77,6 @@ class ProduitsController extends Controller
 
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -79,6 +94,8 @@ class ProduitsController extends Controller
 
         return response()->json([
             'message' => 'Suppression successful',
+            'id' => $produit->id
         ]);
     }
+
 }

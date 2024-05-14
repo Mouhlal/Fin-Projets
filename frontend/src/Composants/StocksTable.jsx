@@ -4,14 +4,15 @@ const StocksTable = ({ produits, refreshApi }) => {
   const url = "http://127.0.0.1:8000/api";
   const deleteProduits = async (id) => {
     try {
-      const resp = await axios.delete(`${url}/produits/${id}`, {
+      await axios.delete(`${url}/produits/${id}`, {
         withCredentials: true,
         withXSRFToken: true,
       });
-      console.log("Produit deleted successfully");
-      alert("Suppression avec succes")
-      refreshApi()
-e    } catch (err) {
+      //console.log("Produit deleted successfully");
+      //alert("Suppression avec succes");
+      refreshApi();
+      e;
+    } catch (err) {
       console.error(err);
     }
   };
@@ -188,7 +189,10 @@ e    } catch (err) {
                             </td>
                             <td className="size-px whitespace-nowrap">
                               <div className="px-6 py-1.5">
-                                <button  type="button" onClick={() => deleteProduits(prod.id)}>
+                                <button
+                                  type="button"
+                                  onClick={() => deleteProduits(prod.id)}
+                                >
                                   Delete
                                 </button>
                               </div>

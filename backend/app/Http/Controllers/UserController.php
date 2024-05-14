@@ -31,7 +31,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => "string|required",
+            "image" => "required|image",
+            "cin" =>  "required|unique:users",
+            "Date_Début_travail" => 'date|required',
+            "salaries" => "numeric|required",
+            "email" => "email|required|unique:users",
+            "password" => "string|min:4|required"
+        ]);
+        $attributes['image'] = $request->file('image')->store('users','public');
+        User::create($attributes);
+        return response()->json(['success' =>
+        "user ajouter avec success :D"]);
     }
 
     /**
@@ -39,7 +51,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return  User::find($id);
+        //
     }
 
     /**
@@ -57,7 +69,7 @@ class UserController extends Controller
     {
         $belly = $request->validate([
             'name' => 'string',
-            'image' => 'image',
+            'image' => 'image|nullable',
             'cin' => 'string',
             'Date_Début_travail' => 'date',
             'salaries' => 'numeric',
@@ -71,25 +83,18 @@ class UserController extends Controller
             'message' => "L'utilisateur a bien été modifié",
             'user' => $id
         ]);
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
-<<<<<<< HEAD
+    public function destroy(string $id)
     {
-
-        $user->delete();
+        $id = User::find($id)->delete();
         return response()->json([
-            'message' => 'User  deleted',
-=======
-    {        
-
-        $user->delete();
-        return response()->json([
-            'message' => 'User  deleted',            
->>>>>>> 328dc54b835b35035b3befd92ad28944adf146e1
+            'message' => 'Suppression with succes',
         ]);
     }
 }

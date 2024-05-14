@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const UsersTable = ({ users, refreshApi }) => {
   const url = "http://127.0.0.1:8000/api";
@@ -41,9 +42,9 @@ const UsersTable = ({ users, refreshApi }) => {
                       >
                         View all
                       </a>
-                      <a
+                      <Link
                         className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                        href="#"
+                        to={`/employees/ajouter`}
                       >
                         <svg
                           className="flex-shrink-0 size-4"
@@ -61,7 +62,7 @@ const UsersTable = ({ users, refreshApi }) => {
                           <path d="M12 5v14" />
                         </svg>
                         Add users
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -140,11 +141,15 @@ const UsersTable = ({ users, refreshApi }) => {
                           <td className="whitespace-nowrap">
                             <div className="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                               <div className="flex items-center gap-x-3">
-                                <img
-                                  className="inline-block w-9 h-9 rounded-full"
-                                  src={user.image}
-                                  alt="Image Description"
-                                />
+                                <form encType="multipart/form-data">
+                                  <img
+                                    className="inline-block w-9 h-9 rounded-full"
+                                    src={
+                                      user.image
+                                    }
+                                    alt="Image Description"
+                                  />
+                                </form>
                                 <div className="grow">
                                   <span className="block text-sm font-semibold text-gray-800 dark:text-neutral-200">
                                     {user.name}
@@ -172,17 +177,17 @@ const UsersTable = ({ users, refreshApi }) => {
                           </td>
                           <td className="size-px whitespace-nowrap">
                             <div className="px-6 py-1.5">
-                              <a
+                              <Link
                                 className="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500"
-                                href="#"
+                                to={`/employees/${user.id}`}
                               >
                                 Edit
-                              </a>
+                              </Link>
                             </div>
                           </td>
                           <td className="size-px whitespace-nowrap">
                             <div className="px-6 py-1.5">
-                              <button onClick={() => deleteUser(user.id)}>
+                            <button onClick={() => deleteUser(user.id)}>
                                 Delete
                               </button>
                             </div>
@@ -258,9 +263,4 @@ const UsersTable = ({ users, refreshApi }) => {
     </div>
   );
 };
-
-<<<<<<< HEAD
 export default UsersTable;
-=======
-export default UsersTable;
->>>>>>> 328dc54b835b35035b3befd92ad28944adf146e1

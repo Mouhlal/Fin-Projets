@@ -29,7 +29,7 @@ export default function Employees() {
 
   return (
     <div>
-      <StocksTable produits={produits} refreshApi= {refreshApi} />
+      <StocksTable produits={produits} refreshApi={refreshApi} />
     </div>
   );
 }
