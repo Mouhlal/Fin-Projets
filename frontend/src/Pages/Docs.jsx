@@ -36,7 +36,7 @@ export default function Docs() {
 
   return (
     <>
-      <div className="m-4">
+      <div className="p-11">
         <Nav />
       </div>
       <div className="m-5 p-2 ">

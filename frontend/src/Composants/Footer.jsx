@@ -67,17 +67,17 @@ export default function Footer() {
               <nav className="mb-10 list-none">
                 <li className="mt-3">
                   <a className="text-gray-500 cursor-pointer hover:text-gray-900">
-                    Movies
+                    Stocks
                   </a>
                 </li>
                 <li className="mt-3">
                   <a className="text-gray-500 cursor-pointer hover:text-gray-900">
-                    TV
+                    Collections
                   </a>
                 </li>
                 <li className="mt-3">
                   <a className="text-gray-500 cursor-pointer hover:text-gray-900">
-                    Rating
+                    Employées
                   </a>
                 </li>
               </nav>
